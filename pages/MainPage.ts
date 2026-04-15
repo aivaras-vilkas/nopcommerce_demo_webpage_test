@@ -8,6 +8,8 @@ export class MainPage {
   public pagePollButton;
   public pagePollMessage;
   public pagePoolGoodOption;
+  public recentlyViewedFirstProduct;
+  public firstProductGrid;
   
   constructor(private page: Page) {
     this.subscribeEmailField = this.page.locator('#newsletter-email');
@@ -17,9 +19,11 @@ export class MainPage {
     this.pagePollButton = this.page.locator('#vote-poll-1');
     this.pagePollMessage = this.page.locator('#block-poll-vote-error-1');
     this.pagePoolGoodOption = this.page.locator('[name="pollanswers-1"][value="2"]');
+    this.recentlyViewedFirstProduct = this.page.locator('.block-recently-viewed-products li'); //.first()
+    this.firstProductGrid = this.page.locator('.home-page-product-grid .product-title a'); //.first()
   }
 
-  async goToHomepage() {
+  async goToHomepage() {  
     await this.page.goto('/');
   }
 }

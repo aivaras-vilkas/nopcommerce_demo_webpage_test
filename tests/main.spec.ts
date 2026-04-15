@@ -58,3 +58,16 @@ test('Page opinion only for registered users message appears', async ({ page }) 
   await expect(main.pagePollMessage).toHaveText('Only registered users can vote.');
 });
 
+test('Recently view product is added to the list', async ({ page }) => {
+  const main = new MainPage(page);
+  await main.goToHomepage();
+
+  await expect(main.firstProductGrid.first()).toBeVisible();
+  const firstProductGridName = await main.firstProductGrid.first().innerText();
+  await main.firstProductGrid.first().click();
+  await main.goToHomepage();
+
+  const recentlyViewedFirstProductName = await main.recentlyViewedFirstProduct.innerText();
+  await expect(recentlyViewedFirstProductName).toBe(firstProductGridName);
+});
+
