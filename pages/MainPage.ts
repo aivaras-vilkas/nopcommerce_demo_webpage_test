@@ -17,7 +17,10 @@ export class MainPage {
   public categoriesDigitalDownloads;
   public categoriesJewelry;
   public categoriesGiftCards;
-  
+  public loopingSlider;
+  public loopingSliderMiddleNext;
+  public loopingSliderLowerNext;
+
   constructor(public page: Page) {
     this.subscribeEmailField = this.page.locator('#newsletter-email');
     this.subscribeButton = this.page.locator('#newsletter-subscribe-button');
@@ -35,6 +38,9 @@ export class MainPage {
     this.categoriesDigitalDownloads = this.page.locator('.block-category-navigation a[href="/digital-downloads"]');
     this.categoriesJewelry = this.page.locator('.block-category-navigation a[href="/jewelry"]');
     this.categoriesGiftCards = this.page.locator('.block-category-navigation a[href="/gift-cards"]');
+    this.loopingSlider = this.page.locator('#nivo-slider a');
+    this.loopingSliderMiddleNext = this.page.locator('.nivo-nextNav');
+    this.loopingSliderLowerNext = this.page.locator('.nivo-control');
   }
 
   async goToHomepage() {  

@@ -129,3 +129,25 @@ test('Gift Cards category navigation', async ({ page }) => {
   await expect(main.page).toHaveURL('/gift-cards');
 });
 
+test('Looping slider changes after pressing middle button next', async ({ page }) => {
+  const main = new MainPage(page);
+  await main.goToHomepage();
+
+  await expect(main.loopingSlider.first()).toBeVisible();
+  await expect(main.loopingSlider.first()).toHaveAttribute('style', /display:\s*block/);
+  await main.loopingSliderMiddleNext.click();
+  await page.waitForTimeout(500);
+  await expect(main.loopingSlider.nth(1)).toHaveAttribute('style', /display:\s*block/);
+});
+
+test('Looping slider changes after pressing lower button next', async ({ page }) => {
+  const main = new MainPage(page);
+  await main.goToHomepage();
+
+  await expect(main.loopingSlider.first()).toBeVisible();
+  await expect(main.loopingSlider.first()).toHaveAttribute('style', /display:\s*block/);
+  await main.loopingSliderLowerNext.nth(1).click();
+  await page.waitForTimeout(500);
+  await expect(main.loopingSlider.nth(1)).toHaveAttribute('style', /display:\s*block/);
+});
+
