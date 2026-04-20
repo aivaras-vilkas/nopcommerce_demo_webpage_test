@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import { expect } from '@playwright/test';
 
 export class MainPage {
   public subscribeEmailField;
@@ -20,6 +21,9 @@ export class MainPage {
   public loopingSlider;
   public loopingSliderMiddleNext;
   public loopingSliderLowerNext;
+  public searchInputField;
+  public searchButton;
+  public searchResultsText;
 
   constructor(public page: Page) {
     this.subscribeEmailField = this.page.locator('#newsletter-email');
@@ -41,6 +45,9 @@ export class MainPage {
     this.loopingSlider = this.page.locator('#nivo-slider a');
     this.loopingSliderMiddleNext = this.page.locator('.nivo-nextNav');
     this.loopingSliderLowerNext = this.page.locator('.nivo-control');
+    this.searchInputField = this.page.locator('#small-searchterms');
+    this.searchButton = this.page.locator('.button-1.search-box-button');
+    this.searchResultsText = this.page.locator('.product-grid h2 a[href]');
   }
 
   async goToHomepage() {  
@@ -74,4 +81,22 @@ export class MainPage {
         throw new Error(`Category not found: ${category}`);
     }
   }
+
+  async enterSearchTerm(term:string) {  
+    await this.searchInputField.fill(term);
+    await this.searchButton.click();
+  }
+
+  async searchResultsContain(term: string) {
+    const results = this.searchResultsText;
+
+    const count = await results.count();
+    expect(count).toBeGreaterThan(0);
+
+    const searchResultsCount = await results.count();
+    for (let i = 0; i < searchResultsCount; i++) {
+        await expect(results.nth(i)).toContainText(new RegExp(term, 'i'));
+    }
+  }
+
 }
