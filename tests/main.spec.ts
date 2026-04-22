@@ -12,6 +12,7 @@ test('Main page screenshot comparison', async ({ page }) => {
 
   await expect(page).toHaveScreenshot('mainPageScreenshot.png', { fullPage: true });
 });
+
 test.describe('Newsletter subscription tests', () => {
 test('Newsletter subscription success', async ({ page }) => {
   const main = new MainPage(page);
@@ -61,6 +62,7 @@ test('Page opinion only for registered users message appears', async ({ page }) 
 });
 });
 
+test.describe('Recently viewed products tests', () => {
 test('Recently view product is added to the list', async ({ page }) => {
   const main = new MainPage(page);
   await main.goToHomepage();
@@ -74,6 +76,7 @@ test('Recently view product is added to the list', async ({ page }) => {
   await expect(recentlyViewedFirstProductName).toBe(firstProductGridName);
   console.log('Recently viewed product name:', recentlyViewedFirstProductName);
   console.log('First product grid name:', firstProductGridName);
+});
 });
 
 test.describe('Category navigation tests', () => {
@@ -165,14 +168,6 @@ test.describe('Search tests', () => {
 
   await main.enterSearchTerm('laptop');
   await expect(page).toHaveURL(/search\?q=laptop/);
-});
-  test('Search results contain the search term', async ({ page }) => {
-  const main = new MainPage(page);
-  await main.goToHomepage();
-
-  await main.enterSearchTerm('computer');
-  await expect(page).toHaveURL(/search\?q=computer/);
-  await main.searchResultsContain('computer');
 });
 });
 

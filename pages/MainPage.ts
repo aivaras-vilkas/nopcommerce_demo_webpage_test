@@ -2,6 +2,18 @@ import { Page } from "@playwright/test";
 import { expect } from '@playwright/test';
 
 export class MainPage {
+  public pageLogo;
+  public toRegister;
+  public toLogIn;
+  public toShoppingCart;
+  public toWishlist;
+  public topMenuBooks;
+  public topMenuComputers;
+  public topMenuElectronics;
+  public topMenuApparelShoesl;
+  public topMenuDigitalDownloads;
+  public topMenuJewelry;
+  public topMenuGiftCards;
   public subscribeEmailField;
   public subscribeButton;
   public subscribeSuccessMessage;
@@ -26,6 +38,18 @@ export class MainPage {
   public searchResultsText;
 
   constructor(public page: Page) {
+    this.pageLogo = this.page.locator('img[alt="Tricentis Demo Web Shop"]');
+    this.toRegister = this.page.locator('a[href="/register"]');
+    this.toLogIn = this.page.locator('a[href="/login"]');
+    this.toShoppingCart = this.page.locator('#topcartlink');
+    this.toWishlist = this.page.locator('.header-links a.ico-wishlist');
+    this.topMenuBooks = this.page.locator('.top-menu a[href="/books"]');
+    this.topMenuComputers = this.page.locator('.top-menu a[href="/computers"]');
+    this.topMenuElectronics = this.page.locator('.top-menu a[href="/electronics"]');
+    this.topMenuApparelShoesl = this.page.locator('.top-menu a[href="/apparel-shoes"]');
+    this.topMenuDigitalDownloads = this.page.locator('.top-menu a[href="/digital-downloads"]');
+    this.topMenuJewelry = this.page.locator('.top-menu a[href="/jewelry"]');
+    this.topMenuGiftCards = this.page.locator('.top-menu a[href="/gift-cards"]');
     this.subscribeEmailField = this.page.locator('#newsletter-email');
     this.subscribeButton = this.page.locator('#newsletter-subscribe-button');
     this.subscribeSuccessMessage = this.page.locator('.newsletter-result-block');
@@ -52,6 +76,65 @@ export class MainPage {
 
   async goToHomepage() {  
     await this.page.goto('/');
+  }
+
+  async expectMainPageLoaded() {
+    await expect(this.pageLogo).toBeVisible();
+  }
+
+  async goToRegisterLink() {
+    await this.toRegister.click();
+    await expect(this.page).toHaveURL(/register/);
+  }
+
+  async goToLogInLink() {
+    await this.toLogIn.click();
+    await expect(this.page).toHaveURL(/login/);
+  }
+
+  async goToShoppingCart() {
+    await this.toShoppingCart.click();
+    await expect(this.page).toHaveURL(/cart/);
+  }
+
+  async goToWishlist() {
+    await this.toWishlist.click();
+    await expect(this.page).toHaveURL(/wishlist/);
+  }
+
+  async goToTopMenuBooks() {
+    await this.topMenuBooks.click();
+    await expect(this.page).toHaveURL(/books/);
+  }
+
+  async goToTopMenuComputers() {
+    await this.topMenuComputers.click();
+    await expect(this.page).toHaveURL(/computers/);
+  }
+
+  async goToTopMenuElectronics() {
+    await this.topMenuElectronics.click();
+    await expect(this.page).toHaveURL(/electronics/);
+  }
+
+  async goToTopMenuApparelShoes() {
+    await this.topMenuApparelShoesl.click();
+    await expect(this.page).toHaveURL(/apparel-shoes/);
+  }
+
+  async goToTopMenuDigitalDownloads() {
+    await this.topMenuDigitalDownloads.click();
+    await expect(this.page).toHaveURL(/digital-downloads/);
+  }
+
+  async goToTopMenuJewelry() {
+    await this.topMenuJewelry.click();
+    await expect(this.page).toHaveURL(/jewelry/);
+  }
+
+  async goToTopMenuGiftCards() {
+    await this.topMenuGiftCards.click();
+    await expect(this.page).toHaveURL(/gift-cards/);
   }
 
   async goToCategory(category: string) {
