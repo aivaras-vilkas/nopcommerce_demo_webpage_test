@@ -15,6 +15,7 @@ export class MainPage {
   public topMenuJewelry;
   public topMenuGiftCards;
   public subscribeEmailField;
+  public manufacturerTricentisLink;
   public subscribeButton;
   public subscribeSuccessMessage;
   public pagePoll;
@@ -36,6 +37,19 @@ export class MainPage {
   public searchInputField;
   public searchButton;
   public searchResultsText;
+  public productGrid;
+  public footerInformationSitemap;
+  public footerInformationShippingReturn;
+  public footerInformationPrivacyNotice;
+  public footerInformationConditionsOfUse;
+  public footerInformationAboutUs;
+  public footerInformationContactUs;
+  public footerCustomerServiceSearch;
+  public footerCustomerServiceNews;
+  public footerCustomerServiceBlog;
+  public footerCustomerServiceRecentlyViewedProducts;
+  public footerCustomerServiceCompareProductsList;
+  public footerCustomerServiceNewProducts;
 
   constructor(public page: Page) {
     this.pageLogo = this.page.locator('img[alt="Tricentis Demo Web Shop"]');
@@ -50,6 +64,7 @@ export class MainPage {
     this.topMenuDigitalDownloads = this.page.locator('.top-menu a[href="/digital-downloads"]');
     this.topMenuJewelry = this.page.locator('.top-menu a[href="/jewelry"]');
     this.topMenuGiftCards = this.page.locator('.top-menu a[href="/gift-cards"]');
+    this.manufacturerTricentisLink = this.page.locator('.block-manufacturer-navigation').getByRole('link', { name: 'Tricentis' });
     this.subscribeEmailField = this.page.locator('#newsletter-email');
     this.subscribeButton = this.page.locator('#newsletter-subscribe-button');
     this.subscribeSuccessMessage = this.page.locator('.newsletter-result-block');
@@ -72,6 +87,19 @@ export class MainPage {
     this.searchInputField = this.page.locator('#small-searchterms');
     this.searchButton = this.page.locator('.button-1.search-box-button');
     this.searchResultsText = this.page.locator('.product-grid h2 a[href]');
+    this.productGrid = this.page.locator('.product-grid .product-item');
+    this.footerInformationSitemap = this.page.locator('.footer a[href="/sitemap"]');
+    this.footerInformationShippingReturn = this.page.locator('.footer a[href="/shipping-returns"]');
+    this.footerInformationPrivacyNotice = this.page.locator('.footer a[href="/privacy-policy"]');
+    this.footerInformationConditionsOfUse = this.page.locator('.footer a[href="/conditions-of-use"]');
+    this.footerInformationAboutUs = this.page.locator('.footer a[href="/about-us"]');
+    this.footerInformationContactUs = this.page.locator('.footer a[href="/contactus"]');
+    this.footerCustomerServiceSearch = this.page.locator('.customer-service a[href="/search"]');
+    this.footerCustomerServiceNews = this.page.locator('.customer-service a[href="/news"]');
+    this.footerCustomerServiceBlog = this.page.locator('.customer-service a[href="/blog"]');
+    this.footerCustomerServiceRecentlyViewedProducts = this.page.locator('.customer-service a[href="/recentlyviewedproducts"]');
+    this.footerCustomerServiceCompareProductsList = this.page.locator('.customer-service a[href="/compareproducts"]');
+    this.footerCustomerServiceNewProducts = this.page.locator('.customer-service a[href="/newproducts"]');
   }
 
   async goToHomepage() {  
@@ -135,6 +163,75 @@ export class MainPage {
   async goToTopMenuGiftCards() {
     await this.topMenuGiftCards.click();
     await expect(this.page).toHaveURL(/gift-cards/);
+  }
+
+  async goToManufacturerTricentis() {
+    await this.manufacturerTricentisLink.click();
+    await expect(this.page).toHaveURL(/\/tricentis/);
+  }
+
+  async productGridVisible() {
+     await expect((this.productGrid).first()).toBeVisible();
+  }
+  
+  async footerInformationSitemapWorks() {
+     await this.footerInformationSitemap.click();
+     await expect(this.page).toHaveURL(/\/sitemap/);
+  }
+  
+  async footerInformationShippingReturnWorks() {
+     await this.footerInformationShippingReturn.click();
+     await expect(this.page).toHaveURL(/\/shipping-returns/);
+  }
+  
+  async footerInformationPrivacyNoticeWorks() {
+     await this.footerInformationPrivacyNotice.click();
+     await expect(this.page).toHaveURL(/\/privacy-policy/);
+  }
+
+  async footerInformationConditionsOfUseWorks() {
+     await this.footerInformationConditionsOfUse.click();
+     await expect(this.page).toHaveURL(/\/conditions-of-use/);
+  }
+
+  async footerInformationAboutUsWorks() {
+     await this.footerInformationAboutUs.click();
+     await expect(this.page).toHaveURL(/\/about-us/);
+  }
+
+  async footerInformationContactUsWorks() {
+     await this.footerInformationContactUs.click();
+     await expect(this.page).toHaveURL(/\/contactus/);
+  }
+
+  async footerCustomerServiceSearchWorks() {
+     await this.footerCustomerServiceSearch.click();
+     await expect(this.page).toHaveURL(/\/search/);
+  }
+
+  async footerCustomerServiceNewsWorks() {
+     await this.footerCustomerServiceNews.click();
+     await expect(this.page).toHaveURL(/\/news/);
+  }
+
+  async footerCustomerServiceBlogWorks() {
+     await this.footerCustomerServiceBlog.click();
+     await expect(this.page).toHaveURL(/\/blog/);
+  }
+
+  async footerCustomerServiceRecentlyViewedProductsWorks() {
+     await this.footerCustomerServiceRecentlyViewedProducts.click();
+     await expect(this.page).toHaveURL(/\/recentlyviewedproducts/);
+  }
+
+  async footerCustomerServiceCompareProductsListWorks() {
+     await this.footerCustomerServiceCompareProductsList.click();
+     await expect(this.page).toHaveURL(/\/compareproducts/);
+  }
+
+  async footerCustomerServiceNewProductsWorks() {
+     await this.footerCustomerServiceNewProducts.click();
+     await expect(this.page).toHaveURL(/\/newproducts/);
   }
 
   async goToCategory(category: string) {
