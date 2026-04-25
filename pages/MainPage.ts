@@ -50,6 +50,8 @@ export class MainPage {
   public footerCustomerServiceRecentlyViewedProducts;
   public footerCustomerServiceCompareProductsList;
   public footerCustomerServiceNewProducts;
+  public addToCartButton;
+  public addedToCartNotification;
 
   constructor(public page: Page) {
     this.pageLogo = this.page.locator('img[alt="Tricentis Demo Web Shop"]');
@@ -100,6 +102,8 @@ export class MainPage {
     this.footerCustomerServiceRecentlyViewedProducts = this.page.locator('.customer-service a[href="/recentlyviewedproducts"]');
     this.footerCustomerServiceCompareProductsList = this.page.locator('.customer-service a[href="/compareproducts"]');
     this.footerCustomerServiceNewProducts = this.page.locator('.customer-service a[href="/newproducts"]');
+    this.addToCartButton = this.page.locator('.product-box-add-to-cart-button');
+    this.addedToCartNotification = this.page.locator('.bar-notification.success');
   }
 
   async goToHomepage() {  
