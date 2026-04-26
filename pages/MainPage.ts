@@ -238,6 +238,10 @@ export class MainPage {
      await expect(this.page).toHaveURL(/\/newproducts/);
   }
 
+  async addProductFromTheGridToCart(productNumber:number) {
+     await this.addToCartButton.nth(productNumber).click();
+  }
+
   async goToCategory(category: string) {
     switch (category.toLowerCase()) {
       case 'books':
@@ -282,5 +286,4 @@ export class MainPage {
         await expect(results.nth(i)).toContainText(new RegExp(term, 'i'));
     }
   }
-
 }
