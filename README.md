@@ -5,9 +5,6 @@ Playwright E2E Automation Framework — Demo Webshop
 ![Node](https://img.shields.io/badge/node-18.x-green)
 ![Last Commit](https://img.shields.io/github/last-commit/aivaras-vilkas/demo_webshot_test)
 
-A complete end‑to‑end UI automation framework built with Playwright and TypeScript...
-
-
 A end‑to‑end UI automation framework built with Playwright and TypeScript.
 The project includes Page Object Model architecture, custom fixtures, and a automated CI pipeline using GitHub Actions.
 
@@ -21,7 +18,7 @@ Cross‑browser support (Chromium, Firefox, WebKit)
 Visual regression testing via Playwright snapshots
 
 Project Structure:
-
+```
 demo_webshot_test/
 ├── .github/
 │   └── workflows/
@@ -54,6 +51,7 @@ demo_webshot_test/
 └── utils/
     ├── env.ts
     └── logger.ts
+```
 
 Tech stack:
 Playwright — browser automation
